@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-unit-tests:
-    - name: "Unit Tests"
+    name: "Unit Tests"
     runs-on: ubuntu-latest
     steps:
       - name: Download and extract Unit Test Repo
@@ -21,7 +21,7 @@ jobs:
       - name: Run pytest
         run: pytest --spec unit-test/testing-units-f25-OliverOlsenUT-main
   test-system-tests:
-    - name: "System Tests"
+    name: "System Tests"
     runs-on: ubuntu-latest
     steps:
       - name: Download Behave Repo
