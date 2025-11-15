@@ -39,17 +39,22 @@ jobs:
           unzip -q behave.zip -d behave
           unzip -q unit-test.zip -d unit-test
           unzip -q systems.zip -d systems
-          
-          # Note: Unzipping creates a root folder like 'YOUR-ORG-REPO-A-commitSHA'
-          # inside the 'repo-A-contents' directory.
 
       - name: List Unzipped Contents
         run: |
           echo "--- Contents of Repo A ---"
-          ls -l behave
+          ls -l behave/testing-with-behave-OliverOlsenUT-main
           
           echo "--- Contents of Repo B ---"
-          ls -l unit-test
+          ls -l unit-test/testing-units-f25-OliverOlsenUT-main
           
           echo "--- Contents of Repo C ---"
-          ls -l systems
+          ls -l systems/testing-systems-OliverOlsenUT-main
+      - name: Install pytest
+        run: pip install pytest pytest-spec pytest-describe
+      - name: Run pytest on Unit Tests repo
+        run: pytest --spec unit-test/testing-units-f25-OliverOlsenUT-main
+      - name: Run pytest on system tests repo
+        run: pytest --spec systems/testing-systems-OliverOlsenUT-main
+      
+      
