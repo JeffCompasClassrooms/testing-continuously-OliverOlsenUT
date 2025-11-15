@@ -51,59 +51,6 @@ jobs:
         run: |
           cd systems/testing-systems-OliverOlsenUT-main
           pytest --spec .
-  download-and-unzip:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Behave Repo
-        run: |
-          echo "Downloading behave repository..."
-          # This command downloads the main branch as a .zip file.
-          curl \
-            -L "https://github.com/JeffCompasClassrooms/testing-with-behave-OliverOlsenUT/archive/refs/heads/main.zip" \
-            -o behave.zip
-
-      - name: Download Unit Test Repo
-        run: |
-          echo "Downloading unit testing repository..."
-          curl \
-            -L "https://github.com/JeffCompasClassrooms/testing-units-f25-OliverOlsenUT/archive/refs/heads/main.zip" \
-            -o unit-test.zip
-
-      - name: Download Testing Systems Repo
-        run: |
-          echo "Downloading Testing Systems repository..."
-          curl \
-            -L "https://github.com/JeffCompasClassrooms/testing-systems-OliverOlsenUT/archive/refs/heads/main.zip" \
-            -o systems.zip
-
-      - name: Unzip All Repositories
-        run: |
-          # Create separate directories for each repo to prevent file conflicts
-          mkdir -p behave unit-test systems
-          
-          echo "Unzipping..."
-          unzip -q behave.zip -d behave
-          unzip -q unit-test.zip -d unit-test
-          unzip -q systems.zip -d systems
-
-      - name: List Unzipped Contents
-        run: |
-          echo "--- Contents of Repo A ---"
-          ls -l behave/testing-with-behave-OliverOlsenUT-main
-          
-          echo "--- Contents of Repo B ---"
-          ls -l unit-test/testing-units-f25-OliverOlsenUT-main
-          
-          echo "--- Contents of Repo C ---"
-          ls -l systems/testing-systems-OliverOlsenUT-main
-      - name: Install pytest
-        run: pip install pytest pytest-spec pytest-describe
-      - name: Run pytest on Unit Tests repo
-        run: pytest --spec unit-test/testing-units-f25-OliverOlsenUT-main
-      - name: Run pytest on system tests repo
-        run: |
-          cd systems/testing-systems-OliverOlsenUT-main
-          pytest --spec .
   behave-test-cipher:
     name: (Behave Tests) Test Cipher App
     runs-on: ubuntu-latest
@@ -186,7 +133,7 @@ jobs:
           # -----------------------------------------------------------------
 
   # Job for the 'peppers-ghost' application
-  test-peppers-ghost:
+  behave-test-peppers-ghost:
     name: (Behave Tests) Test Peppers-Ghost App
     runs-on: ubuntu-latest
     steps:
@@ -228,8 +175,8 @@ jobs:
 
 
   # Job for the 'squirrel_app' application (using Docker)
-  test-squirrel-app:
-    name: Test Squirrel App
+  behave-test-squirrel-app:
+    name: (Behave Tests) Test Squirrel App
     runs-on: ubuntu-latest
     steps:
       - name: Download Behave Repo
