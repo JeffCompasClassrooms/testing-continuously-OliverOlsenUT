@@ -55,6 +55,8 @@ jobs:
       - name: Run pytest on Unit Tests repo
         run: pytest --spec unit-test/testing-units-f25-OliverOlsenUT-main
       - name: Run pytest on system tests repo
-        run: pytest --spec systems/testing-systems-OliverOlsenUT-main
+        run: |
+          cd systems/testing-systems-OliverOlsenUT-main
+          pytest --spec systems/testing-systems-OliverOlsenUT-main
       
       
