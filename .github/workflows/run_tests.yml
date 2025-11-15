@@ -6,6 +6,7 @@ on:
 
 jobs:
   test-unit-tests:
+    - name: "Unit Tests"
     runs-on: ubuntu-latest
     steps:
       - name: Download and extract Unit Test Repo
@@ -20,6 +21,7 @@ jobs:
       - name: Run pytest
         run: pytest --spec unit-test/testing-units-f25-OliverOlsenUT-main
   test-system-tests:
+    - name: "System Tests"
     runs-on: ubuntu-latest
     steps:
       - name: Download Behave Repo
@@ -88,7 +90,7 @@ jobs:
           echo "Google Chrome: $(google-chrome --version)"
           echo "Python: $(python --version)"
           echo "--------------------------"
-          xvfb-run python -m behave /features/
+          xvfb-run python -m behave features/
           # -----------------------------------------------------------------
 
   # Job for the 'isitchristmas' application
